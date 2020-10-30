@@ -12,11 +12,11 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 moveVec;
     
-    private Rigidbody rigid;
+    public Rigidbody rigid;
 
     private void Awake()
     {
-        rigid = GetComponent<Rigidbody>();
+        rigid = GetComponentInChildren<Rigidbody>();
     }
 
     private void Update()
