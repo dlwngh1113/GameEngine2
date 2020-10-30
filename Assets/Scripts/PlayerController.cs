@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed;
+    [SerializeField] private float speed;
     
     private float hAxis;
     private float vAxis;
 
     private Vector3 moveVec;
     
-    public Rigidbody rigid;
+    private Rigidbody rigid;
 
     private void Awake()
     {
