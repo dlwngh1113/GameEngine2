@@ -5,25 +5,26 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    
     private float hAxis;
     private float vAxis;
-
-    private Vector3 moveVec;
     
-    private Rigidbody rigid;
+    [SerializeField] private float speed;
+    [SerializeField] private float turnSmoothTime;
+    private float turnSmoothVelocity;
+    
+    [SerializeField] private CharacterController controller;
+    [SerializeField] private Transform cam;
 
     private void Awake()
     {
-        rigid = GetComponentInChildren<Rigidbody>();
+        
     }
 
     private void Update()
     {
         GetInput();
         Move();
-        Turn();
+        Jump();
     }
 
     void GetInput()
@@ -34,13 +35,22 @@ public class PlayerController : MonoBehaviour
     
     void Move()
     {
-        moveVec = new Vector3(hAxis, 0, vAxis).normalized;
+        Vector3 direction = new Vector3(hAxis, 0, vAxis).normalized;
+        
+        if (direction.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity,
+                turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-        transform.position += moveVec * speed * Time.deltaTime;
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            controller.Move(moveDir.normalized * speed * Time.deltaTime);
+        }
     }
-    
-    void Turn()
+
+    void Jump()
     {
-        transform.LookAt(transform.position + moveVec);
+        
     }
 }
