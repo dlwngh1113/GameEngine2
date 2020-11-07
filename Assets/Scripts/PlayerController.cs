@@ -8,22 +8,30 @@ public class PlayerController : MonoBehaviour
     private float hAxis;
     private float vAxis;
     
-    [SerializeField] private float speed;
-    [SerializeField] private float turnSmoothTime;
-    private float turnSmoothVelocity;
+    private bool jDown;
+    private bool isJump;
+    private bool isGrounded;
     
+    [SerializeField] private float speed;
+    private float turnSmoothTime;
+    [SerializeField] private float jumpHeight;
+    private float turnSmoothVelocity;
+    [SerializeField] private float gravity = -9.81f;
+    private float groundDistance = 0.4f;
+
+    [SerializeField] private LayerMask groundMask;
+    
+    private Vector3 velocity;
+
+    [SerializeField] private Transform groundCheck;
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform cam;
-
-    private void Awake()
-    {
-        
-    }
 
     private void Update()
     {
         GetInput();
         Move();
+        Gravity();
         Jump();
     }
 
@@ -31,6 +39,7 @@ public class PlayerController : MonoBehaviour
     {
         hAxis = Input.GetAxisRaw("Horizontal");
         vAxis = Input.GetAxisRaw("Vertical");
+        jDown = Input.GetButtonDown("Jump");
     }
     
     void Move()
@@ -49,8 +58,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void Gravity()
+    {
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (isGrounded && velocity.y < 0f)
+        {
+            velocity.y = -2f;
+        }
+        
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+    }
+    
+    
     void Jump()
     {
-        
+        if (jDown && isGrounded)
+        {
+            //Debug.Log("Jump");
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
     }
 }
