@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     private float hAxis;
     private float vAxis;
-    
+
     private bool jDown;
     private bool isJump;
     private bool isGrounded;
+    private bool isDead;
     
     [SerializeField] private float speed;
     private float turnSmoothTime;
@@ -20,10 +23,12 @@ public class PlayerController : MonoBehaviour
     private float groundDistance = 0.4f;
 
     [SerializeField] private LayerMask groundMask;
+    [SerializeField] private LayerMask deadMask;
     
     private Vector3 velocity;
 
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform savePoint;
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform cam;
 
@@ -70,8 +75,7 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
-    
-    
+
     void Jump()
     {
         if (jDown && isGrounded)
@@ -79,5 +83,14 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("Jump");
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("Death"))
+        {
+            SceneManager.LoadScene("InGame");
+        }
+        
     }
 }
