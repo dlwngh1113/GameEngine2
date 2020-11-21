@@ -87,10 +87,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.CompareTag("Death"))
+        //if (hit.gameObject.CompareTag("Death"))
+        //{
+        //    SceneManager.LoadScene("InGame");
+        //}
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Finish"))
         {
-            SceneManager.LoadScene("InGame");
+            MySceneManager.Instance.LoadScene();
         }
-        
     }
 }
