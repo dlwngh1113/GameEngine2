@@ -17,5 +17,11 @@ public class TestNavMeshAgent : MonoBehaviour
     void Update()
     {
         agent.SetDestination(target.position);
+        if((agent.velocity.sqrMagnitude >= 0.2f * 0.2f) && 
+            (agent.remainingDistance < 0.5f))
+        {
+            MyGameManager.Instance.CurrPlayer += 1;
+            this.gameObject.SetActive(false);
+        }
     }
 }
