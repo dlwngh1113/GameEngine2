@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform savePoint;
+    [SerializeField] private Transform startPoint;
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform cam;
 
@@ -87,10 +88,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        //if (hit.gameObject.CompareTag("Death"))
-        //{
-        //    SceneManager.LoadScene("InGame");
-        //}
+        if (hit.gameObject.CompareTag("Death"))
+        {
+            controller.gameObject.transform.position =
+                new Vector3(savePoint.position.x, savePoint.position.y, savePoint.position.z);
+        }
 
     }
     private void OnTriggerEnter(Collider other)
@@ -107,6 +109,11 @@ public class PlayerController : MonoBehaviour
             {
                 MySceneManager.Instance.LoadScene();
             }
+        } 
+        else if (other.gameObject.CompareTag("Save"))
+        {
+            savePoint.position = new Vector3(other.transform.position.x, other.transform.position.y,
+                other.transform.position.z);
         }
     }
 }
