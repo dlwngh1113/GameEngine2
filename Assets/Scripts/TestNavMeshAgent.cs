@@ -18,7 +18,7 @@ public class TestNavMeshAgent : MonoBehaviour
     {
         agent.SetDestination(target.position);
         if((agent.velocity.sqrMagnitude >= 0.2f * 0.2f) && 
-            (agent.remainingDistance < 0.5f))
+            (agent.remainingDistance < 0.01f))
         {
             MyGameManager.Instance.CurrPlayer += 1;
             this.gameObject.SetActive(false);

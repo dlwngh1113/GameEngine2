@@ -99,16 +99,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Finish"))
         {
-            if(MyGameManager.Instance.CurrPlayer == MyGameManager.Instance.MaxPlayer)
-            {
-                this.gameObject.SetActive(false);
-                MyGameManager.Instance._gameoverText.gameObject.SetActive(true);
-                MyGameManager.Instance._lobbyButton.gameObject.SetActive(true);
-            }
-            else
-            {
-                MySceneManager.Instance.LoadScene();
-            }
+            MySceneManager.Instance.LoadScene();
         } 
         else if (other.gameObject.CompareTag("Save"))
         {
