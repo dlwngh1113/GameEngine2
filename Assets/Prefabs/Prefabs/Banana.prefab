@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 9081078986874107534}
   - component: {fileID: 5484416310701936859}
   - component: {fileID: 7078879766447665195}
-  - component: {fileID: 8545664358933656565}
   m_Layer: 0
   m_Name: Mouth
   m_TagString: Untagged
@@ -897,20 +896,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2504454329978171455}
   m_Mesh: {fileID: 0}
---- !u!64 &8545664358933656565
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2504454329978171455}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &3131589315426554319
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,7 +907,6 @@ GameObject:
   - component: {fileID: 4395850598549928402}
   - component: {fileID: 4768573146430662497}
   - component: {fileID: 5392073095749222984}
-  - component: {fileID: 3032769011212335380}
   m_Layer: 0
   m_Name: LeftEye
   m_TagString: Untagged
@@ -992,19 +976,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &3032769011212335380
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3131589315426554319}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3426069343553252032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,7 +1177,6 @@ GameObject:
   - component: {fileID: 1507613983581194727}
   - component: {fileID: 1183278797666398256}
   - component: {fileID: 7009649502336790827}
-  - component: {fileID: 2642522295533382931}
   m_Layer: 0
   m_Name: RightEye
   m_TagString: Untagged
@@ -1276,19 +1246,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &2642522295533382931
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5201278877097811404}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6145791905651660504
 GameObject:
   m_ObjectHideFlags: 0

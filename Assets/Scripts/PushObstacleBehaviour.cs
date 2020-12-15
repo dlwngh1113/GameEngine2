@@ -15,10 +15,12 @@ public class PushObstacleBehaviour : MonoBehaviour
     private float end_x = 3.5f;
     [SerializeField] private float speed;
     private PushDirection _pushDirection;
+    public BoxCollider _boxCollider;
     
     private Transform _curPosition;
     void Start()
     {
+        _boxCollider = GetComponentInChildren<BoxCollider>();
         _curPosition = GetComponent<Transform>();
         _pushDirection = PushDirection.Right;
     }
@@ -33,6 +35,7 @@ public class PushObstacleBehaviour : MonoBehaviour
         switch (_pushDirection)
         {
             case PushDirection.Right:
+                _boxCollider.enabled = true;
                 if (_curPosition.transform.position.x > end_x)
                 {
                     speed *= -1;
@@ -40,6 +43,7 @@ public class PushObstacleBehaviour : MonoBehaviour
                 }
                 break;
             case PushDirection.Left:
+                _boxCollider.enabled = false;
                 if (_curPosition.transform.position.x < start_x)
                 {
                     speed *= -1;

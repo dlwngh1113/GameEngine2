@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class MyGameManager : MonoBehaviour
@@ -12,6 +10,7 @@ public class MyGameManager : MonoBehaviour
     public Text _gameoverText;
     [SerializeField]
     public Button _lobbyButton;
+    private PlayerController _playerController;
     private const int _maxPlayer = 4;
     public int MaxPlayer
     {
@@ -40,16 +39,22 @@ public class MyGameManager : MonoBehaviour
         _currPlayer = 0;
         _gameoverText.gameObject.SetActive(false);
         _lobbyButton.gameObject.SetActive(false);
+        _playerController = FindObjectOfType<PlayerController>();
         if (null == instance)
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(_currPlayer >= _maxPlayer)
+        {
+            _playerController.gameObject.SetActive(false);
+            Instance._gameoverText.gameObject.SetActive(true);
+            Instance._lobbyButton.gameObject.SetActive(true);
+        }
         _playerCounterText.text = _currPlayer + " / " + _maxPlayer;
     }
 }
